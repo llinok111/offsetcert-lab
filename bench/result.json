@@ -1,0 +1,84 @@
+{
+  "node": "v24.19.0",
+  "workload": {
+    "certificateSuite": "3 shapes x 6 offsets: offsetPoly + volume + watertight + convexCertificate",
+    "itersPerSample": 30,
+    "reps": 7,
+    "naiveItersPerSample": 1000,
+    "oraclePointsPerSample": 4000
+  },
+  "coldMs": 16.248,
+  "exact": {
+    "samples": [
+      88.534,
+      100.076,
+      105.905,
+      113.128,
+      131.797,
+      132.477,
+      195.108
+    ],
+    "min": 88.534,
+    "median": 113.128,
+    "p95": 195.108,
+    "stddev": 32.656,
+    "relStddev": 0.2887,
+    "offsetsPerSample": 540,
+    "msPerOffset": 0.2095
+  },
+  "naive": {
+    "samples": [
+      67.415,
+      67.8,
+      70.604,
+      76.692,
+      94.957,
+      98.155,
+      160.457
+    ],
+    "min": 67.415,
+    "median": 76.692,
+    "p95": 160.457,
+    "stddev": 30.72,
+    "relStddev": 0.4006,
+    "offsetsPerSample": 18000,
+    "msPerOffset": 0.0043
+  },
+  "oracle": {
+    "samples": [
+      84.072,
+      86.015,
+      89.881,
+      94.121,
+      96.652,
+      104.279,
+      121.062
+    ],
+    "min": 84.072,
+    "median": 94.121,
+    "p95": 121.062,
+    "stddev": 11.818,
+    "relStddev": 0.1256,
+    "pointsPerSample": 4000,
+    "pointsPerSec": 42498
+  },
+  "speedRatioExactOverNaive": 48.72,
+  "correctness": {
+    "shapes": 3,
+    "offsetBodiesWatertightConvex": 18,
+    "cubicLawRecheckPoints": 63,
+    "cubicLawMismatches": 0,
+    "scaleEquivarianceExact": "15/15",
+    "scales": [
+      "1e-6",
+      "1e-3",
+      "1",
+      "1e3",
+      "1e6"
+    ],
+    "oraclePointsCrossChecked": 60000,
+    "oracleDisagreements": 0,
+    "baselineRejectsAt1e-6": "3/3 shapes (all faces < AREA_EPS=1e-9)",
+    "baselineRelErrAtUnit": "1.67e-16 (volume)"
+  }
+}

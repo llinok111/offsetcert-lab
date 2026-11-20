@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>offsetcert-lab — exact face-offset certificates</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+         background: #0d0f14; color: #d8dee9; }
+  #app { display: grid; grid-template-columns: 1fr 380px; height: 100vh; }
+  #view { position: relative; }
+  canvas { display: block; }
+  aside { border-left: 1px solid #232a36; padding: 18px 20px; overflow-y: auto; background: #10141b; }
+  h1 { font-size: 17px; margin: 0 0 4px; color: #ffb86c; letter-spacing: .3px; }
+  .sub { color: #7d8799; margin-bottom: 16px; font-size: 12px; }
+  label { display: block; margin: 14px 0 6px; color: #9aa5b8; font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
+  select, input[type=range] { width: 100%; }
+  select { background: #1a202b; color: #d8dee9; border: 1px solid #2b3444; padding: 6px 8px; border-radius: 4px; }
+  .row { display: flex; justify-content: space-between; gap: 10px; padding: 5px 0; border-bottom: 1px dashed #1e2531; }
+  .row span:first-child { color: #7d8799; }
+  .row b { color: #f0f4fa; font-weight: 500; text-align: right; }
+  .ok { color: #7ee787 !important; }
+  .bad { color: #ff7b72 !important; }
+  .big { font-size: 20px; color: #ffb86c !important; }
+  .hint { margin-top: 14px; padding: 10px; border: 1px solid #232a36; border-radius: 5px;
+          color: #8b96a8; font-size: 12px; background: #0c1016; }
+  code { color: #79c0ff; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="app">
+  <div id="view"></div>
+  <aside>
+    <h1>offsetcert-lab</h1>
+    <div class="sub">exact rational face-offset certificate</div>
+
+    <label for="shape">sample shape</label>
+    <select id="shape">
+      <option value="0">cube (20 mm)</option>
+      <option value="1">square pyramid (20 mm base)</option>
+      <option value="2">chamfered prism (20 mm high)</option>
+    </select>
+
+    <label for="d">offset distance d <b id="dval">0.10 mm</b></label>
+    <input id="d" type="range" min="0" max="2" step="0.05" value="0.1" />
+
+    <div class="row"><span>exact volume</span><b id="vol" class="big">—</b></div>
+    <div class="row"><span>exact rational</span><b id="frac">—</b></div>
+    <div class="row"><span>V(d) cubic law</span><b id="coeffs">—</b></div>
+    <div class="row"><span>V'(d)</span><b id="slope">—</b></div>
+    <div class="row"><span>watertight</span><b id="wt">—</b></div>
+    <div class="row"><span>convex certificate</span><b id="cvx">—</b></div>
+    <div class="row"><span>edges / triangles</span><b id="topo">—</b></div>
+    <div class="row"><span>tetra oracle, 2000 pts</span><b id="oracle">—</b></div>
+    <div class="row"><span>scale equivariance</span><b id="scale">—</b></div>
+
+    <div class="hint">
+      Every number above is computed by <code>src/core.mjs</code> in this browser with
+      BigInt rationals — the same module <code>bench/verify.mjs</code> asserts on.
+      Drag <b>d</b>: the volume follows the exact cubic
+      <code>a0 + a1 d + a2 d² + a3 d³</code>, with no floating-point epsilon.
+    </div>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
